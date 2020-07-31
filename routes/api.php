@@ -11,7 +11,7 @@ Route::group(['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1\Admin', '
     Route::apiResource('users', 'UsersApiController');
 
     // Bus
-    Route::apiResource('bus', 'BusesApiController');
+    Route::apiResource('buses', 'BusesApiController');
 
     // Rides
     Route::apiResource('rides', 'RidesApiController');

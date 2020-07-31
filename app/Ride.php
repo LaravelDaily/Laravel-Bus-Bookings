@@ -40,7 +40,7 @@ class Ride extends Model
 
     public function bus()
     {
-        return $this->belongsTo(Bu::class, 'bus_id');
+        return $this->belongsTo(Bus::class, 'bus_id');
     }
 
     public function getDepartureTimeAttribute($value)

@@ -10,7 +10,7 @@ class AddRelationshipFieldsToRidesTable extends Migration
     {
         Schema::table('rides', function (Blueprint $table) {
             $table->unsignedInteger('bus_id');
-            $table->foreign('bus_id', 'bus_fk_1918899')->references('id')->on('bus');
+            $table->foreign('bus_id', 'bus_fk_1918899')->references('id')->on('buses');
         });
     }
 }

@@ -74,23 +74,23 @@ class PermissionsTableSeeder extends Seeder
             ],
             [
                 'id'    => 17,
-                'title' => 'bu_create',
+                'title' => 'bus_create',
             ],
             [
                 'id'    => 18,
-                'title' => 'bu_edit',
+                'title' => 'bus_edit',
             ],
             [
                 'id'    => 19,
-                'title' => 'bu_show',
+                'title' => 'bus_show',
             ],
             [
                 'id'    => 20,
-                'title' => 'bu_delete',
+                'title' => 'bus_delete',
             ],
             [
                 'id'    => 21,
-                'title' => 'bu_access',
+                'title' => 'bus_access',
             ],
             [
                 'id'    => 22,

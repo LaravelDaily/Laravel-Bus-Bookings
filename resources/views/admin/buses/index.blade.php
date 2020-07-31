@@ -1,35 +1,35 @@
 @extends('layouts.admin')
 @section('content')
-@can('bu_create')
+@can('bus_create')
     <div style="margin-bottom: 10px;" class="row">
         <div class="col-lg-12">
-            <a class="btn btn-success" href="{{ route('admin.bus.create') }}">
-                {{ trans('global.add') }} {{ trans('cruds.bu.title_singular') }}
+            <a class="btn btn-success" href="{{ route('admin.buses.create') }}">
+                {{ trans('global.add') }} {{ trans('cruds.bus.title_singular') }}
             </a>
         </div>
     </div>
 @endcan
 <div class="card">
     <div class="card-header">
-        {{ trans('cruds.bu.title_singular') }} {{ trans('global.list') }}
+        {{ trans('cruds.bus.title_singular') }} {{ trans('global.list') }}
     </div>
 
     <div class="card-body">
         <div class="table-responsive">
-            <table class=" table table-bordered table-striped table-hover datatable datatable-Bu">
+            <table class=" table table-bordered table-striped table-hover datatable datatable-Bus">
                 <thead>
                     <tr>
                         <th width="10">
 
                         </th>
                         <th>
-                            {{ trans('cruds.bu.fields.id') }}
+                            {{ trans('cruds.bus.fields.id') }}
                         </th>
                         <th>
-                            {{ trans('cruds.bu.fields.name') }}
+                            {{ trans('cruds.bus.fields.name') }}
                         </th>
                         <th>
-                            {{ trans('cruds.bu.fields.places_available') }}
+                            {{ trans('cruds.bus.fields.places_available') }}
                         </th>
                         <th>
                             &nbsp;
@@ -37,35 +37,35 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($bus as $key => $bu)
-                        <tr data-entry-id="{{ $bu->id }}">
+                    @foreach($buses as $key => $bus)
+                        <tr data-entry-id="{{ $bus->id }}">
                             <td>
 
                             </td>
                             <td>
-                                {{ $bu->id ?? '' }}
+                                {{ $bus->id ?? '' }}
                             </td>
                             <td>
-                                {{ $bu->name ?? '' }}
+                                {{ $bus->name ?? '' }}
                             </td>
                             <td>
-                                {{ $bu->places_available ?? '' }}
+                                {{ $bus->places_available ?? '' }}
                             </td>
                             <td>
-                                @can('bu_show')
-                                    <a class="btn btn-xs btn-primary" href="{{ route('admin.bus.show', $bu->id) }}">
+                                @can('bus_show')
+                                    <a class="btn btn-xs btn-primary" href="{{ route('admin.buses.show', $bus->id) }}">
                                         {{ trans('global.view') }}
                                     </a>
                                 @endcan
 
-                                @can('bu_edit')
-                                    <a class="btn btn-xs btn-info" href="{{ route('admin.bus.edit', $bu->id) }}">
+                                @can('bus_edit')
+                                    <a class="btn btn-xs btn-info" href="{{ route('admin.buses.edit', $bus->id) }}">
                                         {{ trans('global.edit') }}
                                     </a>
                                 @endcan
 
-                                @can('bu_delete')
-                                    <form action="{{ route('admin.bus.destroy', $bu->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
+                                @can('bus_delete')
+                                    <form action="{{ route('admin.buses.destroy', $bus->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
                                         <input type="hidden" name="_method" value="DELETE">
                                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                         <input type="submit" class="btn btn-xs btn-danger" value="{{ trans('global.delete') }}">
@@ -90,11 +90,11 @@
 <script>
     $(function () {
   let dtButtons = $.extend(true, [], $.fn.dataTable.defaults.buttons)
-@can('bu_delete')
+@can('bus_delete')
   let deleteButtonTrans = '{{ trans('global.datatables.delete') }}'
   let deleteButton = {
     text: deleteButtonTrans,
-    url: "{{ route('admin.bus.massDestroy') }}",
+    url: "{{ route('admin.buses.massDestroy') }}",
     className: 'btn-danger',
     action: function (e, dt, node, config) {
       var ids = $.map(dt.rows({ selected: true }).nodes(), function (entry) {
@@ -125,12 +125,12 @@
     order: [[ 1, 'desc' ]],
     pageLength: 100,
   });
-  let table = $('.datatable-Bu:not(.ajaxTable)').DataTable({ buttons: dtButtons })
+  let table = $('.datatable-Bus:not(.ajaxTable)').DataTable({ buttons: dtButtons })
   $('a[data-toggle="tab"]').on('shown.bs.tab click', function(e){
       $($.fn.dataTable.tables(true)).DataTable()
           .columns.adjust();
   });
-  
+
 })
 
 </script>

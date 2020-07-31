@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Api\V1\Admin;
 
-use App\Bu;
+use App\Bus;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreBuRequest;
-use App\Http\Requests\UpdateBuRequest;
-use App\Http\Resources\Admin\BuResource;
+use App\Http\Requests\StoreBusRequest;
+use App\Http\Requests\UpdateBusRequest;
+use App\Http\Resources\Admin\BusResource;
 use Gate;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -15,41 +15,41 @@ class BusesApiController extends Controller
 {
     public function index()
     {
-        abort_if(Gate::denies('bu_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        abort_if(Gate::denies('bus_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return new BuResource(Bu::all());
+        return new BusResource(Bus::all());
     }
 
-    public function store(StoreBuRequest $request)
+    public function store(StoreBusRequest $request)
     {
-        $bu = Bu::create($request->all());
+        $bus = Bus::create($request->all());
 
-        return (new BuResource($bu))
+        return (new BusResource($bus))
             ->response()
             ->setStatusCode(Response::HTTP_CREATED);
     }
 
-    public function show(Bu $bu)
+    public function show(Bus $bus)
     {
-        abort_if(Gate::denies('bu_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        abort_if(Gate::denies('bus_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return new BuResource($bu);
+        return new BusResource($bus);
     }
 
-    public function update(UpdateBuRequest $request, Bu $bu)
+    public function update(UpdateBusRequest $request, Bus $bus)
     {
-        $bu->update($request->all());
+        $bus->update($request->all());
 
-        return (new BuResource($bu))
+        return (new BusResource($bus))
             ->response()
             ->setStatusCode(Response::HTTP_ACCEPTED);
     }
 
-    public function destroy(Bu $bu)
+    public function destroy(Bus $bus)
     {
-        abort_if(Gate::denies('bu_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        abort_if(Gate::denies('bus_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $bu->delete();
+        $bus->delete();
 
         return response(null, Response::HTTP_NO_CONTENT);
     }

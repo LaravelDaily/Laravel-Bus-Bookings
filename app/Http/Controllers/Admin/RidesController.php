@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Bu;
+use App\Bus;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\MassDestroyRideRequest;
 use App\Http\Requests\StoreRideRequest;
@@ -27,7 +27,7 @@ class RidesController extends Controller
     {
         abort_if(Gate::denies('ride_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $buses = Bu::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
+        $buses = Bus::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
         return view('admin.rides.create', compact('buses'));
     }
@@ -43,7 +43,7 @@ class RidesController extends Controller
     {
         abort_if(Gate::denies('ride_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $buses = Bu::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
+        $buses = Bus::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
         $ride->load('bus');
 

@@ -65,7 +65,7 @@ return [
             'deleted_at_helper'        => '',
         ],
     ],
-    'bu'             => [
+    'bus'            => [
         'title'          => 'Buses',
         'title_singular' => 'Bus',
         'fields'         => [

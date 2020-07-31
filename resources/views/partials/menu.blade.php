@@ -57,13 +57,13 @@
                 </ul>
             </li>
         @endcan
-        @can('bu_access')
+        @can('bus_access')
             <li class="c-sidebar-nav-item">
-                <a href="{{ route("admin.bus.index") }}" class="c-sidebar-nav-link {{ request()->is('admin/bus') || request()->is('admin/bus/*') ? 'active' : '' }}">
+                <a href="{{ route("admin.buses.index") }}" class="c-sidebar-nav-link {{ request()->is('admin/buses') || request()->is('admin/buses/*') ? 'active' : '' }}">
                     <i class="fa-fw fas fa-bus c-sidebar-nav-icon">
 
                     </i>
-                    {{ trans('cruds.bu.title') }}
+                    {{ trans('cruds.bus.title') }}
                 </a>
             </li>
         @endcan
