@@ -2,9 +2,11 @@
 
 namespace App;
 
+use App\Notifications\BookingStatusChangeNotification;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use \DateTimeInterface;
+use Illuminate\Support\Facades\Notification;
 
 class Booking extends Model
 {
@@ -34,6 +36,15 @@ class Booking extends Model
         'updated_at',
         'deleted_at',
     ];
+
+    public static function booting()
+    {
+        self::updated(function (Booking $booking) {
+            if ($booking->isDirty('status') && in_array($booking->status, ['confirmed', 'rejected'])) {
+                Notification::route('mail', $booking->email)->notify(new BookingStatusChangeNotification($booking->status));
+            }
+        });
+    }
 
     protected function serializeDate(DateTimeInterface $date)
     {
