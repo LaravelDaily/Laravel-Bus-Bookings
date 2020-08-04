@@ -19,7 +19,7 @@ class RidesTableSeeder extends Seeder
 
         foreach (range(1, 50) as $id) {
             $departureTime = now()
-                ->setTime(mt_rand(6, 18), array_rand([0, 15, 30, 45]), 0)
+                ->setTime(mt_rand(6, 18), collect([0, 15, 30, 45])->random(), 0)
                 ->addDays(mt_rand(1, 4));
 
             $rides[] = [
