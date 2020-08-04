@@ -28,7 +28,7 @@
                             {{ trans('cruds.booking.fields.ride') }}
                         </th>
                         <td>
-                            {{ $booking->ride->departure_place ?? '' }}
+                            {{ $booking->ride->route ?? '' }}
                         </td>
                     </tr>
                     <tr>

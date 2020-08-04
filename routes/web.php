@@ -9,6 +9,8 @@ Route::get('/home', function () {
     return redirect()->route('admin.home');
 });
 
+Route::post('rides', 'RideController@book')->name('rides.book');
+
 Route::resource('rides', 'RideController')->only(['index']);
 
 Auth::routes(['register' => false]);

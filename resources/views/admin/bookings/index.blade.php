@@ -89,7 +89,7 @@
                                 {{ $booking->id ?? '' }}
                             </td>
                             <td>
-                                {{ $booking->ride->departure_place ?? '' }}
+                                {{ $booking->ride->route ?? '' }}
                             </td>
                             <td>
                                 {{ $booking->name ?? '' }}

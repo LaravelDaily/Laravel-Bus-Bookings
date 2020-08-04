@@ -62,4 +62,14 @@ class Ride extends Model
     {
         $this->attributes['arrival_time'] = $value ? Carbon::createFromFormat(config('panel.date_format') . ' ' . config('panel.time_format'), $value)->format('Y-m-d H:i:s') : null;
     }
+
+    public function getRouteAttribute()
+    {
+        return $this->departure_place . ' - ' . $this->arrival_place;
+    }
+
+    public function confirmedBookings()
+    {
+        return $this->hasMany(Booking::class)->where('status', 'confirmed');
+    }
 }
