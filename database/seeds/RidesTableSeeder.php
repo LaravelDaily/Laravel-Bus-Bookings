@@ -28,6 +28,7 @@ class RidesTableSeeder extends Seeder
                 'arrival_place'   => $faker->unique()->city,
                 'departure_time'  => $departureTime,
                 'arrival_time'    => $departureTime->clone()->addHours(1, 6),
+                'is_booking_open' => true,
             ];
 
             $faker->unique(true);
