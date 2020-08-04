@@ -44,6 +44,18 @@
                             {{ trans('cruds.ride.fields.is_booking_open') }}
                         </th>
                         <th>
+                            Places Available
+                        </th>
+                        <th>
+                            Confirmed Bookings
+                        </th>
+                        <th>
+                            Rejected Bookings
+                        </th>
+                        <th>
+                            Processing Bookings
+                        </th>
+                        <th>
                             &nbsp;
                         </th>
                     </tr>
@@ -75,6 +87,24 @@
                             <td>
                                 <span style="display:none">{{ $ride->is_booking_open ?? '' }}</span>
                                 <input type="checkbox" disabled="disabled" {{ $ride->is_booking_open ? 'checked' : '' }}>
+                            </td>
+                            <td>
+                                {{ $ride->bus->places_available }}
+                            </td>
+                            <td>
+                                <a href="{{ route('admin.bookings.index', ['ride_id' => $ride->id, 'status' => 'confirmed']) }}">
+                                    {{ $ride->confirmed_bookings_count }}
+                                </a>
+                            </td>
+                            <td>
+                                <a href="{{ route('admin.bookings.index', ['ride_id' => $ride->id, 'status' => 'rejected']) }}">
+                                    {{ $ride->rejected_bookings_count }}
+                                </a>
+                            </td>
+                            <td>
+                                <a href="{{ route('admin.bookings.index', ['ride_id' => $ride->id, 'status' => 'processing']) }}">
+                                    {{ $ride->processing_bookings_count }}
+                                </a>
                             </td>
                             <td>
                                 @can('ride_show')

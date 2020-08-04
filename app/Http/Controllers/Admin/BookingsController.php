@@ -22,7 +22,13 @@ class BookingsController extends Controller
 
         $rides = Ride::get();
 
-        return view('admin.bookings.index', compact('bookings', 'rides'));
+        $selectedRide = null;
+
+        if (request()->input('ride_id')) {
+            $selectedRide = optional($rides->find(request()->input('ride_id')))->route;
+        }
+
+        return view('admin.bookings.index', compact('bookings', 'rides', 'selectedRide'));
     }
 
     public function create()

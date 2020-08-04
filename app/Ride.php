@@ -72,4 +72,14 @@ class Ride extends Model
     {
         return $this->hasMany(Booking::class)->where('status', 'confirmed');
     }
+
+    public function rejectedBookings()
+    {
+        return $this->hasMany(Booking::class)->where('status', 'rejected');
+    }
+
+    public function processingBookings()
+    {
+        return $this->hasMany(Booking::class)->where('status', 'processing');
+    }
 }

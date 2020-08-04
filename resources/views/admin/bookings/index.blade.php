@@ -54,7 +54,7 @@
                             <select class="search">
                                 <option value>{{ trans('global.all') }}</option>
                                 @foreach($rides as $key => $item)
-                                    <option value="{{ $item->departure_place }}">{{ $item->departure_place }}</option>
+                                    <option value="{{ $item->route }}"{{ $selectedRide == $item->route ? ' selected' : '' }}>{{ $item->route }}</option>
                                 @endforeach
                             </select>
                         </td>
@@ -71,7 +71,7 @@
                             <select class="search" strict="true">
                                 <option value>{{ trans('global.all') }}</option>
                                 @foreach(App\Booking::STATUS_SELECT as $key => $item)
-                                    <option value="{{ $key }}">{{ $item }}</option>
+                                    <option value="{{ $key }}"{{ request()->input('status') == $key ? ' selected' : '' }}>{{ $item }}</option>
                                 @endforeach
                             </select>
                         </td>
@@ -190,6 +190,9 @@
         .search(value, strict)
         .draw()
   });
+  @if (request()->has('status') || request()->has('ride_id'))
+      $('.datatable thead .search').trigger('input');
+  @endif
 })
 
 </script>

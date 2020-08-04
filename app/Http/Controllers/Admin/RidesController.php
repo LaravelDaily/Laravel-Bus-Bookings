@@ -18,7 +18,7 @@ class RidesController extends Controller
     {
         abort_if(Gate::denies('ride_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $rides = Ride::all();
+        $rides = Ride::withCount(['confirmedBookings', 'rejectedBookings', 'processingBookings'])->get();
 
         return view('admin.rides.index', compact('rides'));
     }
