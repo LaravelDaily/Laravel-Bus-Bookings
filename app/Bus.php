@@ -30,4 +30,9 @@ class Bus extends Model
     {
         return $date->format('Y-m-d H:i:s');
     }
+
+    public function getSelectNameAttribute()
+    {
+        return $this->name . ' (' . $this->places_available . ' ' . \Str::plural('place', $this->places_available) . ')';
+    }
 }

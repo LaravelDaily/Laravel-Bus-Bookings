@@ -28,7 +28,7 @@
                             {{ trans('cruds.ride.fields.bus') }}
                         </th>
                         <td>
-                            {{ $ride->bus->name ?? '' }}
+                            {{ $ride->bus->select_name ?? '' }}
                         </td>
                     </tr>
                     <tr>

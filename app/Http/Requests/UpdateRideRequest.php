@@ -51,7 +51,8 @@ class UpdateRideRequest extends FormRequest
             ],
             'is_booking_open' => [
                 [
-                    'required',
+                    'nullable',
+                    'boolean',
                 ],
             ],
         ];

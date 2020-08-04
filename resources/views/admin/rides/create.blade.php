@@ -65,8 +65,8 @@
             </div>
             <div class="form-group">
                 <div class="form-check {{ $errors->has('is_booking_open') ? 'is-invalid' : '' }}">
-                    <input class="form-check-input" type="checkbox" name="is_booking_open" id="is_booking_open" value="1" required {{ old('is_booking_open', 0) == 1 || old('is_booking_open') === null ? 'checked' : '' }}>
-                    <label class="required form-check-label" for="is_booking_open">{{ trans('cruds.ride.fields.is_booking_open') }}</label>
+                    <input class="form-check-input" type="checkbox" name="is_booking_open" id="is_booking_open" value="1" {{ old('is_booking_open', 0) == 1 || old('is_booking_open') === null ? 'checked' : '' }}>
+                    <label class="form-check-label" for="is_booking_open">{{ trans('cruds.ride.fields.is_booking_open') }}</label>
                 </div>
                 @if($errors->has('is_booking_open'))
                     <div class="invalid-feedback">

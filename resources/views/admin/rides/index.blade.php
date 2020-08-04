@@ -58,7 +58,7 @@
                                 {{ $ride->id ?? '' }}
                             </td>
                             <td>
-                                {{ $ride->bus->name ?? '' }}
+                                {{ $ride->bus->select_name ?? '' }}
                             </td>
                             <td>
                                 {{ $ride->departure_place ?? '' }}
@@ -155,7 +155,7 @@
       $($.fn.dataTable.tables(true)).DataTable()
           .columns.adjust();
   });
-  
+
 })
 
 </script>

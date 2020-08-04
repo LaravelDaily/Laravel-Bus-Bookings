@@ -27,7 +27,7 @@ class RidesController extends Controller
     {
         abort_if(Gate::denies('ride_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $buses = Bus::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
+        $buses = Bus::all()->pluck('select_name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
         return view('admin.rides.create', compact('buses'));
     }
@@ -43,7 +43,7 @@ class RidesController extends Controller
     {
         abort_if(Gate::denies('ride_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $buses = Bus::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
+        $buses = Bus::all()->pluck('select_name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
         $ride->load('bus');
 
