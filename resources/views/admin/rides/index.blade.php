@@ -23,28 +23,22 @@
 
                         </th>
                         <th>
-                            {{ trans('cruds.ride.fields.id') }}
-                        </th>
-                        <th>
                             {{ trans('cruds.ride.fields.bus') }}
                         </th>
                         <th>
-                            {{ trans('cruds.ride.fields.departure_place') }}
+                            Route
                         </th>
                         <th>
-                            {{ trans('cruds.ride.fields.arrival_place') }}
+                            Departs
                         </th>
                         <th>
-                            {{ trans('cruds.ride.fields.departure_time') }}
+                            Arrives
                         </th>
                         <th>
-                            {{ trans('cruds.ride.fields.arrival_time') }}
+                            Is Open
                         </th>
                         <th>
-                            {{ trans('cruds.ride.fields.is_booking_open') }}
-                        </th>
-                        <th>
-                            Places Available
+                            Places Left
                         </th>
                         <th>
                             Confirmed Bookings
@@ -67,29 +61,23 @@
 
                             </td>
                             <td>
-                                {{ $ride->id ?? '' }}
-                            </td>
-                            <td>
                                 {{ $ride->bus->select_name ?? '' }}
                             </td>
                             <td>
-                                {{ $ride->departure_place ?? '' }}
+                                {{ $ride->route ?? '' }}
                             </td>
                             <td>
-                                {{ $ride->arrival_place ?? '' }}
+                                {{ Carbon\Carbon::parse($ride->departure_time)->format('m-d H:i') ?? '' }}
                             </td>
                             <td>
-                                {{ $ride->departure_time ?? '' }}
-                            </td>
-                            <td>
-                                {{ $ride->arrival_time ?? '' }}
+                                {{ Carbon\Carbon::parse($ride->arrival_time)->format('m-d H:i') ?? '' }}
                             </td>
                             <td>
                                 <span style="display:none">{{ $ride->is_booking_open ?? '' }}</span>
                                 <input type="checkbox" disabled="disabled" {{ $ride->is_booking_open ? 'checked' : '' }}>
                             </td>
                             <td>
-                                {{ $ride->bus->places_available }}
+                                {{ $ride->bus->places_available - $ride->confirmed_bookings_count }}
                             </td>
                             <td>
                                 <a href="{{ route('admin.bookings.index', ['ride_id' => $ride->id, 'status' => 'confirmed']) }}">
@@ -177,7 +165,7 @@
 
   $.extend(true, $.fn.dataTable.defaults, {
     orderCellsTop: true,
-    order: [[ 1, 'desc' ]],
+    order: [[ 3, 'asc' ]],
     pageLength: 100,
   });
   let table = $('.datatable-Ride:not(.ajaxTable)').DataTable({ buttons: dtButtons })

@@ -23,9 +23,6 @@
 
                         </th>
                         <th>
-                            {{ trans('cruds.booking.fields.id') }}
-                        </th>
-                        <th>
                             {{ trans('cruds.booking.fields.ride') }}
                         </th>
                         <th>
@@ -46,9 +43,6 @@
                     </tr>
                     <tr>
                         <td>
-                        </td>
-                        <td>
-                            <input class="search" type="text" placeholder="{{ trans('global.search') }}">
                         </td>
                         <td>
                             <select class="search">
@@ -84,9 +78,6 @@
                         <tr data-entry-id="{{ $booking->id }}">
                             <td>
 
-                            </td>
-                            <td>
-                                {{ $booking->id ?? '' }}
                             </td>
                             <td>
                                 {{ $booking->ride->route ?? '' }}
